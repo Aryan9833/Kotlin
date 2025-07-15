@@ -9,5 +9,7 @@ fun main() = application {
         title = "KotlinProject",
     ) {
         CarousalExample()
+        FilterChipExample()
+        suggestionchip()
     }
 }

@@ -7,66 +7,74 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.material3.FilterChipDefaults
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import kotlinproject.composeapp.generated.resources.Res
-import kotlinproject.composeapp.generated.resources.compose_multiplatform
-@Composable
+import kotlinproject.composeapp.generated.resources.free_settings_icon_3110_thumb
+import kotlinproject.composeapp.generated.resources.selected
+import kotlinproject.composeapp.generated.resources.unselected
 
 @Preview
+@Composable
 fun CarousalExample() {
-    val childCheckedStates = remember { mutableStateListOf(false, false, false) }
-
-    val parentState = remember(childCheckedStates) {
-        when {
-            childCheckedStates.all { it } -> ToggleableState.On
-            childCheckedStates.none { it } -> ToggleableState.Off
-            else -> ToggleableState.Indeterminate
-        }
-    }
-
-    Column {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-        )
-        {
-            Text("select all")
-            TriStateCheckbox(
-                state = parentState,
-                onClick = {
-                    val newState = parentState != ToggleableState.On
-                    for (i in childCheckedStates.indices) {
-                        childCheckedStates[i] = newState
-                    }
-                }
+    AssistChip(
+        { println("AssistChip clicked: apani beti ko bhej") },
+        label = { Text("Assist Chip")},
+        leadingIcon = {
+            Icon(
+               painter = painterResource(Res.drawable.free_settings_icon_3110_thumb), // TODO: fix this, drawable is not found
+                contentDescription = "Settings Icon",
+                Modifier.size(AssistChipDefaults.IconSize)
             )
         }
-        childCheckedStates.forEachIndexed { index, checked ->
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().safeContentPadding()
-            ) {
-                Text("Child ${index + 1}")
-                Checkbox(
-                    checked = checked,
-                    onCheckedChange = { isChecked ->
-                        childCheckedStates[index] = isChecked
-                    }
+    )
+}
+
+@Preview
+@Composable
+fun FilterChipExample() {
+    var selected by remember { mutableStateOf(false) }
+    FilterChip(
+        onClick = { selected = !selected },
+        label = { Text("Filter Chip") },
+        selected = selected,
+        leadingIcon = if (selected) {
+            {
+                Icon(
+                    painter = painterResource(Res.drawable.free_settings_icon_3110_thumb),
+                    contentDescription = "Filter Icon",
+                    modifier = Modifier.size(FilterChipDefaults.IconSize)
                 )
             }
-        }
-        if (childCheckedStates.all { it }) {
-            Text("all options are selected")
-        }
- }
+        } else { null }
+    )
+}
+
+@Preview
+@Composable
+fun suggestionchip() {
+    SuggestionChip(
+        onClick = { println("payal") },
+        label = { Text("Suggestion Chip") }
+
+
+    )
+
 }
