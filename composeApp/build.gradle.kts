@@ -59,6 +59,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -69,8 +70,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation("androidx.compose.material3:material3-android:1.3.2")
 
-                implementation("androidx.compose.material3:material3:1.2.1") // or latest stable
 
 
             implementation(projects.shared)

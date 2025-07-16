@@ -130,3 +130,25 @@ fun HorizontalDividerExample() {
         Text(text = "Third item in list")
     }
 }
+
+class MainActivity :ComponentActivity() {
+
+    private val permissionsToRequest =arraybof(
+        manifest.permission.RECORD_AUDIO,
+        manifest.permission.CALL_PHONE,
+
+    )
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            permisionsGuideCompoaseTheme {
+                val viewmodal =viewmodel<MainViewModel>()
+                val dialogQueue =viewModel.visiblePermissionDialogQueue
+
+                val cama
+            }
+        }
+
+    }
+
+}
