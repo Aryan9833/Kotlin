@@ -8,8 +8,6 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "KotlinProject",
     ) {
-        CarousalExample()
-        FilterChipExample()
-        suggestionchip()
+        HorizontalDividerExample()
     }
 }

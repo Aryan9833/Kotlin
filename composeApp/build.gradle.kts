@@ -69,6 +69,10 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+                implementation("androidx.compose.material3:material3:1.2.1") // or latest stable
+
+
             implementation(projects.shared)
         }
         commonTest.dependencies {
